@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | ODAY MOBILE</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primaryBlue: '#0f172a',
+                        accentBlue: '#2563eb',
+                        lightBg: '#f8fafc',
+                        cardBg: '#ffffff',
+                        borderGray: '#e2e8f0'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+        body { font-family: 'Cairo', sans-serif; background-color: #f8fafc; color: #1e293b; }
+    </style>
+</head>
+<body class="bg-lightBg text-slate-800 min-h-screen p-4 max-w-2xl mx-auto">
+
+    <!-- شاشة تسجيل الدخول -->
+    <div id="login-screen" class="bg-white p-6 rounded-2xl border border-slate-200 text-center mt-12 shadow-xl">
+        <div class="w-16 h-16 bg-blue-50 border border-blue-200 rounded-full flex items-center justify-center text-accentBlue text-2xl mx-auto mb-4">
+            <i class="fa-solid fa-lock"></i>
+        </div>
+        <h2 class="text-xl font-black text-primaryBlue mb-2">لوحة تحكم ODAY MOBILE</h2>
+        <p class="text-slate-500 text-xs mb-6">الرجاء إدخال رمز المرور الخاص بالإدارة للدخول</p>
+        <input type="password" id="pass-input" placeholder="كلمة المرور (1234)" class="w-full bg-slate-50 border border-slate-300 text-center py-3 rounded-xl text-lg font-bold mb-4 focus:outline-none focus:border-accentBlue text-slate-800">
+        <button onclick="checkPass()" class="w-full bg-accentBlue text-white font-black py-3 rounded-xl text-sm hover:bg-blue-700 transition shadow">دخول لوحة التحكم</button>
+    </div>
+
+    <!-- لوحة التحكم الفعلية -->
+    <div id="admin-panel" class="hidden space-y-6">
+        <!-- Top Bar -->
+        <div class="flex justify-between items-center bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+            <div>
+                <h1 class="font-black text-primaryBlue text-base">إدارة منتجات الكتالوج</h1>
+                <p class="text-[10px] text-slate-500">تحكم بأسعار وصور ومنتجات ODAY MOBILE بسهولة</p>
+            </div>
+            <a href="index.html" class="bg-slate-100 border border-slate-300 text-slate-700 text-xs px-3 py-2 rounded-lg flex items-center gap-1 hover:bg-slate-200 transition">
+                <i class="fa-solid fa-eye"></i> معاينة الموقع
+            </a>
+        </div>
+
+        <!-- Add New Product Form -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            <h2 class="font-bold text-xs text-accentBlue flex items-center gap-2 border-b border-slate-100 pb-2 uppercase tracking-wide">
+                <i class="fa-solid fa-plus-circle"></i> إضافة منتج جديد للكتالوج
+            </h2>
+
+            <div>
+                <label class="block text-xs text-slate-600 mb-1">اسم المنتج</label>
+                <input type="text" id="prod-name" placeholder="مثال: AirPods Pro 2 أو شاحن جداري" class="w-full bg-slate-50 border border-slate-300 p-2.5 rounded-lg text-xs focus:outline-none focus:border-accentBlue text-slate-800">
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-xs text-slate-600 mb-1">السعر ($)</label>
+                    <input type="number" id="prod-price" placeholder="مثال: 15" class="w-full bg-slate-50 border border-slate-300 p-2.5 rounded-lg text-xs focus:outline-none focus:border-accentBlue text-slate-800">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-600 mb-1">البراند / الماركة</label>
+                    <select id="prod-brand" class="w-full bg-slate-50 border border-slate-300 p-2.5 rounded-lg text-xs text-slate-700 focus:outline-none focus:border-accentBlue">
+                        <option value="Apple"> Apple</option>
+                        <option value="Samsung">Samsung</option>
+                        <option value="Green Lion">Green Lion</option>
+                        <option value="HOCO">HOCO</option>
+                        <option value="Porodo">Porodo</option>
+                        <option value="Anker">Anker</option>
+                        <option value="Baseus">Baseus</option>
+                        <option value="عام">عام</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs text-slate-600 mb-1">الفئة / القسم الرئيسي</label>
+                <select id="prod-cat" class="w-full bg-slate-50 border border-slate-300 p-2.5 rounded-lg text-xs text-slate-700 focus:outline-none focus:border-accentBlue">
+                    <option value="هواتف ذكية">📱 هواتف ذكية</option>
+                    <option value="سماعات وإيربودز">🎧 سماعات وإيربودز</option>
+                    <option value="شواحن وكابلات">⚡ شواحن وكابلات</option>
+                    <option value="ساعات ذكية">⌚ ساعات ذكية</option>
+                    <option value="إكسسوارات سيارات">🚗 إكسسوارات سيارات</option>
+                    <option value="باور بانك">🔋 باور بانك</option>
+                    <option value="صيانة وقطع غيار">🛠️ صيانة وقطع غيار</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-xs text-slate-600 mb-1">اختر صورة المنتج من الاستوديو / المعرض</label>
+                <input type="file" id="prod-file" accept="image/*" class="w-full text-xs text-slate-500 file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:bg-blue-50 file:text-accentBlue file:font-semibold hover:file:bg-blue-100">
+            </div>
+
+            <button onclick="saveProduct()" class="w-full bg-accentBlue text-white font-black py-3 rounded-xl text-xs hover:bg-blue-700 transition flex items-center justify-center gap-2 shadow">
+                <i class="fa-solid fa-cloud-arrow-up"></i> حفظ ونشر المنتج فوراً
+            </button>
+        </div>
+
+        <!-- Manage Existing Products List -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+            <h2 class="font-bold text-xs text-accentBlue mb-4 flex items-center gap-2 border-b border-slate-100 pb-2 uppercase tracking-wide">
+                <i class="fa-solid fa-list-check"></i> المنتجات الحالية بالكتالوج
+            </h2>
+            <div id="admin-products-list" class="space-y-3">
+                <!-- المنتجات المضافة تظهر هنا مع خيار الحذف -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const pass = "1234";
+
+        function checkPass() {
+            const input = document.getElementById('pass-input').value;
+            if(input === pass) {
+                document.getElementById('login-screen').classList.add('hidden');
+                document.getElementById('admin-panel').classList.remove('hidden');
+                loadAdminProducts();
+            } else {
+                alert('كلمة المرور غير صحيحة!');
+            }
+        }
+
+        function getProducts() {
+            let saved = localStorage.getItem('oday_products');
+            return saved ? JSON.parse(saved) : [];
+        }
+
+        function loadAdminProducts() {
+            const list = document.getElementById('admin-products-list');
+            const prods = getProducts();
+
+            if(prods.length === 0) {
+                list.innerHTML = '<p class="text-slate-400 text-xs text-center py-4">لا توجد منتجات مضافة بعد.</p>';
+                return;
+            }
+
+            list.innerHTML = prods.map((p, idx) => `
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <img src="${p.image}" class="w-12 h-12 rounded-lg object-cover bg-white border border-slate-200 shadow-sm">
+                        <div>
+                            <h4 class="font-bold text-xs text-slate-800">${p.name}</h4>
+                            <span class="text-[10px] text-accentBlue font-black">$${p.price}</span>
+                            <span class="text-[10px] text-slate-400 mr-2">(${p.brand})</span>
+                        </div>
+                    </div>
+                    <button onclick="deleteProduct(${idx})" class="text-red-500 hover:text-red-700 text-sm p-2 transition">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function saveProduct() {
+            const name = document.getElementById('prod-name').value;
+            const price = document.getElementById('prod-price').value;
+            const brand = document.getElementById('prod-brand').value;
+            const cat = document.getElementById('prod-cat').value;
+            const fileInput = document.getElementById('prod-file');
+
+            if(!name || !price) {
+                alert('الرجاء إدخال اسم المنتج والسعر على الأقل!');
+                return;
+            }
+
+            let imgUrl = "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=300";
+
+            if(fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imgUrl = e.target.result;
+                    addProductToStorage({ name, price, brand, category: cat, image: imgUrl });
+                }
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                addProductToStorage({ name, price, brand, category: cat, image: imgUrl });
+            }
+        }
+
+        function addProductToStorage(prod) {
+            let prods = getProducts();
+            prods.unshift(prod);
+            localStorage.setItem('oday_products', JSON.stringify(prods));
+            alert('تم حفظ ونشر المنتج بنجاح!');
+            document.getElementById('prod-name').value = '';
+            document.getElementById('prod-price').value = '';
+            document.getElementById('prod-file').value = '';
+            loadAdminProducts();
+        }
+
+        function deleteProduct(index) {
+            if(confirm('هل أنت متأكد من حذف هذا المنتج؟')) {
+                let prods = getProducts();
+                prods.splice(index, 1);
+                localStorage.setItem('oday_products', JSON.stringify(prods));
+                loadAdminProducts();
+            }
+        }
+    </script>
+</body>
+</html>
