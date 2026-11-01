@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODAY MOBILE | كتالوج الجملة والإلكترونيات</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primaryBlue: '#0f172a',
+                        accentBlue: '#2563eb',
+                        lightBg: '#f8fafc',
+                        cardBg: '#ffffff',
+                        borderGray: '#e2e8f0'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+        body { font-family: 'Cairo', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-lightBg text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="bg-primaryBlue text-white border-b border-slate-800 sticky top-0 z-50 px-4 py-3 flex items-center justify-between shadow-md">
+        <div class="flex items-center gap-3">
+            <button onclick="toggleDrawer()" class="text-white hover:text-blue-400 text-xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="flex items-center gap-2">
+                <div class="w-9 h-9 rounded-full bg-accentBlue flex items-center justify-center text-white font-bold text-lg shadow">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </div>
+                <span class="font-black text-lg tracking-wider text-white">ODAY <span class="text-blue-400">MOBILE</span></span>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="https://wa.me/96181257059" target="_blank" class="bg-accentBlue text-white px-3.5 py-1.5 rounded-lg font-bold text-xs flex items-center gap-1.5 shadow hover:bg-blue-700 transition">
+                <i class="fa-brands fa-whatsapp text-sm"></i> تواصل معنا
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="bg-gradient-to-b from-primaryBlue to-slate-900 text-white py-8 px-4 text-center border-b border-slate-800 shadow-inner">
+        <div class="max-w-md mx-auto">
+            <div class="w-20 h-20 mx-auto mb-3 bg-blue-500/10 border-2 border-blue-500 rounded-full flex items-center justify-center text-blue-400 text-3xl shadow-lg shadow-blue-500/20">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+            </div>
+            <h1 class="text-2xl font-black text-white mb-1">ODAY MOBILE</h1>
+            <p class="text-slate-300 text-xs mb-5">تجار الجملة - كتالوج شامل للإلكترونيات والإكسسوارات الفاخرة</p>
+            
+            <div class="grid grid-cols-3 gap-2 bg-slate-800/80 p-3 rounded-xl border border-slate-700 text-center mb-2">
+                <div>
+                    <span class="block text-blue-400 font-black text-base" id="stat-products">0</span>
+                    <span class="text-[10px] text-slate-400">منتج بالكتالوج</span>
+                </div>
+                <div class="border-x border-slate-700">
+                    <span class="block text-blue-400 font-black text-base">12</span>
+                    <span class="text-[10px] text-slate-400">علامة تجارية</span>
+                </div>
+                <div>
+                    <span class="block text-blue-400 font-black text-base">8</span>
+                    <span class="text-[10px] text-slate-400">فئات رئيسية</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Horizontal Slider -->
+    <div class="bg-white py-3 border-b border-slate-200 overflow-x-auto no-scrollbar px-4 flex gap-2 items-center shadow-sm">
+        <button onclick="filterByBrand('all')" class="bg-accentBlue text-white font-bold text-xs px-4 py-2 rounded-full whitespace-nowrap brand-btn shadow-sm">الكل ✨</button>
+        <button onclick="filterByBrand('Apple')" class="bg-slate-100 text-slate-700 font-semibold text-xs px-4 py-2 rounded-full whitespace-nowrap brand-btn border border-slate-200 hover:bg-slate-200"> Apple</button>
+        <button onclick="filterByBrand('Samsung')" class="bg-slate-100 text-slate-700 font-semibold text-xs px-4 py-2 rounded-full whitespace-nowrap brand-btn border border-slate-200 hover:bg-slate-200">Samsung</button>
+        <button onclick="filterByBrand('Green Lion')" class="bg-slate-100 text-slate-700 font-semibold text-xs px-4 py-2 rounded-full whitespace-nowrap brand-btn border border-slate-200 hover:bg-slate-200">Green Lion</button>
+        <button onclick="filterByBrand('HOCO')" class="bg-slate-100 text-slate-700 font-semibold text-xs px-4 py-2 rounded-full whitespace-nowrap brand-btn border border-slate-200 hover:bg-slate-200">HOCO</button>
+        <button onclick="filterByBrand('Porodo')" class="bg-slate-100 text-slate-700 font-semibold text-xs px-4 py-2 rounded-full whitespace-nowrap brand-btn border border-slate-200 hover:bg-slate-200">Porodo</button>
+        <button onclick="filterByBrand('Anker')" class="bg-slate-100 text-slate-700 font-semibold text-xs px-4 py-2 rounded-full whitespace-nowrap brand-btn border border-slate-200 hover:bg-slate-200">Anker</button>
+        <button onclick="filterByBrand('Baseus')" class="bg-slate-100 text-slate-700 font-semibold text-xs px-4 py-2 rounded-full whitespace-nowrap brand-btn border border-slate-200 hover:bg-slate-200">Baseus</button>
+    </div>
+
+    <!-- Main Products Catalog Section -->
+    <main class="flex-1 max-w-4xl mx-auto w-full p-4">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-boxes-stacked text-accentBlue"></i> المنتجات المتاحة حالياً
+            </h2>
+            <span class="text-xs text-slate-500 bg-white px-2.5 py-1 rounded-md border border-slate-200 shadow-sm" id="product-count">0 منتج</span>
+        </div>
+
+        <div id="products-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <!-- المنتجات تظهر هنا -->
+        </div>
+    </main>
+
+    <!-- Side Drawer -->
+    <div id="drawer" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden transition-opacity">
+        <div class="bg-white text-slate-800 w-72 h-full p-5 flex flex-col shadow-2xl transform transition-transform">
+            <div class="flex justify-between items-center mb-4 pb-3 border-b border-slate-200">
+                <span class="font-black text-accentBlue text-base">التصنيفات والفئات</span>
+                <button onclick="toggleDrawer()" class="text-slate-400 hover:text-slate-700 text-lg"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="flex flex-col gap-1.5 overflow-y-auto flex-1 pr-1">
+                <button onclick="filterCategory('الكل'); toggleDrawer();" class="text-right py-2.5 px-3 rounded-lg hover:bg-blue-50 font-bold text-xs text-blue-600 bg-blue-50/80">✨ الكل (عرض الكتالوج)</button>
+                <button onclick="filterCategory('هواتف ذكية'); toggleDrawer();" class="text-right py-2 px-3 rounded-lg hover:bg-slate-100 font-semibold text-xs text-slate-700">📱 هواتف ذكية (Smartphones)</button>
+                <button onclick="filterCategory('سماعات وإيربودز'); toggleDrawer();" class="text-right py-2 px-3 rounded-lg hover:bg-slate-100 font-semibold text-xs text-slate-700">🎧 سماعات وإيربودز (AirPods)</button>
+                <button onclick="filterCategory('شواحن وكابلات'); toggleDrawer();" class="text-right py-2 px-3 rounded-lg hover:bg-slate-100 font-semibold text-xs text-slate-700">⚡ شواحن وكابلات (Chargers)</button>
+                <button onclick="filterCategory('ساعات ذكية'); toggleDrawer();" class="text-right py-2 px-3 rounded-lg hover:bg-slate-100 font-semibold text-xs text-slate-700">⌚ ساعات ذكية (Smartwatches)</button>
+                <button onclick="filterCategory('إكسسوارات سيارات'); toggleDrawer();" class="text-right py-2 px-3 rounded-lg hover:bg-slate-100 font-semibold text-xs text-slate-700">🚗 إكسسوارات سيارات (Car Accessories)</button>
+                <button onclick="filterCategory('باور بانك'); toggleDrawer();" class="text-right py-2 px-3 rounded-lg hover:bg-slate-100 font-semibold text-xs text-slate-700">🔋 باور بانك (Power Banks)</button>
+                <button onclick="filterCategory('صيانة وقطع غيار'); toggleDrawer();" class="text-right py-2 px-3 rounded-lg hover:bg-slate-100 font-semibold text-xs text-slate-700">🛠️ صيانة وقطع غيار (Tools)</button>
+            </div>
+            <div class="pt-3 border-t border-slate-200 text-center text-[10px] text-slate-400">
+                ODAY MOBILE &copy; 2026
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-primaryBlue text-white border-t border-slate-800 text-center py-4 text-xs mt-auto">
+        <p>للتواصل والطلب السريع عبر الواتساب: <span class="text-blue-400 font-bold" dir="ltr">+961 81 257 059</span></p>
+    </footer>
+
+    <script>
+        function getProducts() {
+            let saved = localStorage.getItem('oday_products');
+            return saved ? JSON.parse(saved) : [];
+        }
+
+        function renderProducts(prods) {
+            const grid = document.getElementById('products-grid');
+            document.getElementById('stat-products').innerText = prods.length;
+            document.getElementById('product-count').innerText = `${prods.length} منتج`;
+            
+            if(prods.length === 0) {
+                grid.innerHTML = '<p class="col-span-full text-center text-slate-400 py-12 text-xs bg-white rounded-xl border border-slate-200 shadow-sm">لا توجد منتجات مضافة حالياً. يرجى إضافتها من لوحة التحكم (admin.html).</p>';
+                return;
+            }
+
+            grid.innerHTML = prods.map(p => `
+                <div class="bg-white border border-slate-200 rounded-xl p-3 flex flex-col justify-between shadow-sm hover:shadow-md transition relative group">
+                    <div>
+                        <div class="w-full h-32 bg-slate-100 rounded-lg overflow-hidden mb-2 relative flex items-center justify-center border border-slate-100">
+                            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover">
+                            <span class="absolute top-1 right-1 bg-slate-900/80 text-blue-400 text-[10px] font-semibold px-2 py-0.5 rounded shadow">${p.brand || 'عام'}</span>
+                        </div>
+                        <h3 class="font-bold text-xs text-slate-800 line-clamp-1 mb-1">${p.name}</h3>
+                        <p class="text-[10px] text-slate-400 mb-2">${p.category || 'عام'}</p>
+                    </div>
+                    <div class="flex items-center justify-between mt-2 pt-2 border-t border-slate-100">
+                        <span class="text-accentBlue font-black text-sm">$${p.price}</span>
+                        <a href="https://wa.me/96181257059?text=${encodeURIComponent('مرحباً، أريد طلب هذا المنتج: ' + p.name + ' بسعر $' + p.price)}" target="_blank" class="w-8 h-8 bg-accentBlue text-white rounded-lg flex items-center justify-center font-bold hover:bg-blue-700 transition shadow">
+                            <i class="fa-solid fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleDrawer() {
+            const drawer = document.getElementById('drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        function filterByBrand(brand) {
+            let prods = getProducts();
+            if(brand !== 'all') {
+                prods = prods.filter(p => p.brand === brand);
+            }
+            renderProducts(prods);
+        }
+
+        function filterCategory(cat) {
+            let prods = getProducts();
+            if(cat !== 'الكل') {
+                prods = prods.filter(p => p.category === cat);
+            }
+            renderProducts(prods);
+        }
+
+        renderProducts(getProducts());
+    </script>
+</body>
+</html>
